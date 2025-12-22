@@ -507,7 +507,7 @@ const Hero = ({ t }: { t: TranslationData['hero'] }) => {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
             {/* ANDROID BUTTON - Green Theme */}
             <motion.a
-              href="assets/downloads/Linguo AI.apk"
+              href="https://github.com/DilyorbekUbaydullayev/landing-page-linguo/releases/download/v1.0.0/Linguo.AI.apk"
               download
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
@@ -521,7 +521,7 @@ const Hero = ({ t }: { t: TranslationData['hero'] }) => {
 
             {/* WINDOWS BUTTON - Blue Theme */}
             <motion.a
-              href="assets/downloads/LinguoAI.exe"
+              href="https://github.com/DilyorbekUbaydullayev/landing-page-linguo/releases/download/v1.0.1/LinguoAI.exe"
               download
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
