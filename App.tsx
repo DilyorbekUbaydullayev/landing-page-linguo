@@ -16,12 +16,11 @@ import {
   Send,
   CheckCircle,
   AlertCircle,
-  Instagram, 
-  Linkedin,  // LinkedIn uchun
+  Instagram,
+  Linkedin,
   Youtube,
-  ChevronDown, 
-  Check// <-- Buni qo'shishni unutmang
-
+  ChevronDown,
+  Check
 } from 'lucide-react';
 
 // --- CUSTOM BRAND ICONS ---
@@ -39,7 +38,7 @@ const WindowsLogo = () => (
 
 // --- Types ---
 
-type Language = 'en' | 'uz' | 'ru';
+type Language = 'uz' | 'en' | 'ru';
 
 interface TranslationData {
   nav: {
@@ -143,7 +142,7 @@ const translations: Record<Language, TranslationData> = {
     steps: {
       title: "Three steps to fluency",
       list: [
-        { title: "Pick a Movie", desc: "Choose from our library or upload your own favorite film." },
+        { title: "Pick a Movie", desc: "Choose from Youtube or upload your own favorite film." },
         { title: "Watch & Interact", desc: "Click words, shadow lines, and chat with the AI about scenes." },
         { title: "Track Progress", desc: "Get detailed analytics on your vocabulary and speaking accuracy." },
       ],
@@ -204,7 +203,7 @@ const translations: Record<Language, TranslationData> = {
     steps: {
       title: "Erkinlikka 3 qadam",
       list: [
-        { title: "Kino tanlang", desc: "Kutubxonamizdan tanlang yoki sevimli filmingizni yuklang." },
+        { title: "Kino tanlang", desc: "Youtubedan tanlang yoki sevimli filmingizni yuklang." },
         { title: "Ko'ring va Muloqot qiling", desc: "So'zlarni bosing, aktyorlarga taqlid qiling va AI bilan sahnlar haqida gaplashing." },
         { title: "Natijani Kuzating", desc: "So'z boyligi va gapirish aniqligi bo'yicha batafsil statistika oling." },
       ],
@@ -265,7 +264,7 @@ const translations: Record<Language, TranslationData> = {
     steps: {
       title: "3 шага к свободе",
       list: [
-        { title: "Выберите фильм", desc: "Выберите из нашей библиотеки или загрузите свой любимый фильм." },
+        { title: "Выберите фильм", desc: "Выберите из Youtube или загрузите свой любимый фильм." },
         { title: "Смотрите и общайтесь", desc: "Кликайте по словам, повторяйте за актерами и общайтесь с ИИ." },
         { title: "Следите за прогрессом", desc: "Получайте подробную статистику по словарному запасу и точности речи." },
       ],
@@ -292,7 +291,7 @@ const translations: Record<Language, TranslationData> = {
 
 const Navbar = ({ lang, setLang, t }: { lang: Language, setLang: (l: Language) => void, t: TranslationData['nav'] }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false); // Dropdown holati
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
  useEffect(() => {
@@ -307,21 +306,19 @@ const Navbar = ({ lang, setLang, t }: { lang: Language, setLang: (l: Language) =
     { code: 'ru', label: 'Русский', flag: '🇷🇺' }
   ];
 
-  const getLangCode = (l: Language) => l.toUpperCase();
-
 return (
     <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-[#030014]/90 backdrop-blur-xl border-b border-white/[0.06] shadow-lg shadow-black/20' : 'bg-transparent'}`}>
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-18 lg:h-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
           
           {/* LOGO SECTION */}
-          <div className="flex-shrink-0 flex items-center gap-3 cursor-pointer group">
+          <div className="flex-shrink-0 flex items-center gap-2 sm:gap-3 cursor-pointer group">
             <img 
               src="/logo.png" 
               alt="Linguo AI Logo" 
-              className="w-10 h-10 object-contain rounded-lg drop-shadow-[0_0_15px_rgba(139,92,246,0.5)]" 
+              className="w-8 h-8 sm:w-10 sm:h-10 object-contain rounded-lg drop-shadow-[0_0_15px_rgba(139,92,246,0.5)]" 
             />
-            <span className="font-display font-bold text-xl sm:text-2xl tracking-tight text-white flex items-center gap-1">
+            <span className="font-display font-bold text-lg sm:text-xl md:text-2xl tracking-tight text-white flex items-center gap-1">
               Linguo<span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">AI</span>
             </span>
           </div>
@@ -387,7 +384,7 @@ return (
 
           {/* MOBILE MENU BUTTON */}
           <div className="md:hidden flex items-center gap-1">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-gray-400 hover:text-white p-2.5 rounded-lg hover:bg-white/[0.04] transition-all">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-gray-400 hover:text-white p-2 rounded-lg hover:bg-white/[0.04] transition-all">
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
@@ -411,19 +408,19 @@ return (
               {/* Mobile Language Selection (Row of Buttons) */}
               <div className="py-4 border-t border-white/[0.06] mt-2">
                 <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-3 px-1">Select Language</p>
-                <div className="flex gap-2">
+                <div className="flex gap-2 flex-wrap sm:flex-nowrap">
                   {languages.map((item) => (
                     <button
                       key={item.code}
                       onClick={() => setLang(item.code as Language)}
-                      className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg border transition-all ${
+                      className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg border transition-all min-w-[30%] ${
                         lang === item.code 
                           ? 'bg-violet-600/20 border-violet-500/50 text-white' 
                           : 'bg-white/[0.03] border-white/[0.06] text-gray-400 hover:bg-white/[0.06]'
                       }`}
                     >
                       <span className="text-lg">{item.flag}</span>
-                      <span className="text-sm font-medium">{item.code.toUpperCase()}</span>
+                      <span className="text-xs sm:text-sm font-medium">{item.code.toUpperCase()}</span>
                     </button>
                   ))}
                 </div>
@@ -475,7 +472,7 @@ const Hero = ({ t }: { t: TranslationData['hero'] }) => {
         <div className="absolute bottom-20 left-1/2 -translate-x-1/2 w-72 h-72 lg:w-[500px] lg:h-[500px] bg-indigo-600/15 rounded-full mix-blend-screen filter blur-[100px] lg:blur-[150px] animate-blob animation-delay-4000" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 z-10 w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
         {/* Text Content */}
         <motion.div
@@ -492,10 +489,10 @@ const Hero = ({ t }: { t: TranslationData['hero'] }) => {
             <span className="text-xs font-semibold tracking-wider uppercase text-accent/90">{t.badge}</span>
           </div>
 
-          <h1 className="text-[2.5rem] sm:text-5xl lg:text-6xl xl:text-7xl font-display font-bold leading-[1.08] mb-6 lg:mb-8 tracking-[-0.02em]">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-bold leading-[1.08] mb-6 lg:mb-8 tracking-[-0.02em] break-words">
             {t.headline.split('. ')[0]}.
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-300 animate-gradient-x">
+            <br className="hidden sm:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-300 animate-gradient-x block sm:inline mt-2 sm:mt-0">
               {t.headline.split('. ')[1]}
             </span>
           </h1>
@@ -504,14 +501,14 @@ const Hero = ({ t }: { t: TranslationData['hero'] }) => {
             {t.subheadline}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start w-full sm:w-auto">
             {/* ANDROID BUTTON - Green Theme */}
             <motion.a
               href="https://github.com/DilyorbekUbaydullayev/landing-page-linguo/releases/download/v1.0.0/Linguo.AI.apk"
               download
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="flex items-center justify-center gap-3 bg-white text-[#030014] px-7 py-3.5 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base shadow-[0_0_30px_rgba(255,255,255,0.25)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(61,220,132,0.6)] hover:bg-[#eafff3] border-2 border-transparent hover:border-[#3DDC84]"
+              className="flex items-center justify-center gap-3 bg-white text-[#030014] px-6 py-4 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base shadow-[0_0_30px_rgba(255,255,255,0.25)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(61,220,132,0.6)] hover:bg-[#eafff3] border-2 border-transparent hover:border-[#3DDC84] w-full sm:w-auto"
             >
               <span className="text-[#3DDC84]">
                 <AndroidLogo />
@@ -525,7 +522,7 @@ const Hero = ({ t }: { t: TranslationData['hero'] }) => {
               download
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="flex items-center justify-center gap-3 bg-white/[0.03] text-white border border-white/10 px-7 py-3.5 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base hover:bg-[#0078D7]/10 hover:border-[#0078D7]/50 hover:shadow-[0_0_30px_rgba(0,120,215,0.3)] transition-all duration-300"
+              className="flex items-center justify-center gap-3 bg-white/[0.03] text-white border border-white/10 px-6 py-4 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base hover:bg-[#0078D7]/10 hover:border-[#0078D7]/50 hover:shadow-[0_0_30px_rgba(0,120,215,0.3)] transition-all duration-300 w-full sm:w-auto"
             >
                <span className="text-[#0078D7]">
                 <WindowsLogo />
@@ -618,7 +615,7 @@ const KillerFeature = ({ t }: { t: TranslationData['killer'] }) => {
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[150px] pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-fuchsia-600/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -638,7 +635,7 @@ const KillerFeature = ({ t }: { t: TranslationData['killer'] }) => {
               {t.description}
             </p>
 
-            <div className="grid grid-cols-2 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <div className="p-4 sm:p-5 bg-white/[0.03] rounded-2xl border border-white/[0.06] backdrop-blur-sm hover:bg-white/[0.05] transition-colors duration-300">
                 <Activity className="text-violet-400 w-7 h-7 sm:w-8 sm:h-8 mb-3" />
                 <h3 className="text-white font-bold text-base sm:text-lg">{t.stat1}</h3>
@@ -655,9 +652,9 @@ const KillerFeature = ({ t }: { t: TranslationData['killer'] }) => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="relative flex flex-col items-center justify-center p-8 sm:p-10 lg:p-12 bg-gradient-to-b from-violet-900/15 to-transparent rounded-2xl sm:rounded-3xl border border-white/[0.08] order-1 lg:order-2"
+            className="relative flex flex-col items-center justify-center p-6 sm:p-10 lg:p-12 bg-gradient-to-b from-violet-900/15 to-transparent rounded-2xl sm:rounded-3xl border border-white/[0.08] order-1 lg:order-2"
           >
-            <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gray-800 border-4 border-violet-500/30 overflow-hidden mb-6 sm:mb-8 relative ring-4 ring-violet-500/10">
+            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gray-800 border-4 border-violet-500/30 overflow-hidden mb-6 sm:mb-8 relative ring-4 ring-violet-500/10">
               <img src="https://picsum.photos/200" alt="Avatar" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-violet-500/20 to-transparent"></div>
             </div>
@@ -695,13 +692,13 @@ const Features = ({ t }: { t: TranslationData['features'] }) => {
       {/* Subtle background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-violet-600/5 rounded-full blur-[120px] pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 tracking-[-0.02em]">{t.title}</h2>
           <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">{t.subtitle}</p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
           {t.cards.map((card, idx) => {
             const Icon = icons[idx];
             const color = colors[idx];
@@ -736,7 +733,7 @@ const Features = ({ t }: { t: TranslationData['features'] }) => {
 const ProblemSolution = ({ t }: { t: TranslationData['problem'] }) => {
   return (
     <section className="py-16 sm:py-20 lg:py-24 bg-[#080810]">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -744,7 +741,7 @@ const ProblemSolution = ({ t }: { t: TranslationData['problem'] }) => {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="grid md:grid-cols-2 gap-0 rounded-2xl sm:rounded-3xl overflow-hidden border border-white/[0.06]"
         >
-          <div className="p-8 sm:p-10 lg:p-12 bg-[#0c0c14] flex flex-col justify-center border-b md:border-b-0 md:border-r border-white/[0.06]">
+          <div className="p-6 sm:p-10 lg:p-12 bg-[#0c0c14] flex flex-col justify-center border-b md:border-b-0 md:border-r border-white/[0.06]">
             <div className="flex items-center gap-2 mb-5">
               <span className="w-2 h-2 rounded-full bg-red-500/80"></span>
               <span className="text-red-400 font-bold tracking-wider text-xs uppercase">{t.oldWay}</span>
@@ -752,7 +749,7 @@ const ProblemSolution = ({ t }: { t: TranslationData['problem'] }) => {
             <h3 className="text-xl sm:text-2xl font-bold text-gray-500 mb-3 line-through decoration-red-500/40 decoration-2">{t.oldWayDesc.split('.')[0]}</h3>
             <p className="text-gray-500 text-sm sm:text-base leading-relaxed">{t.oldWayDesc}</p>
           </div>
-          <div className="p-8 sm:p-10 lg:p-12 bg-gradient-to-br from-violet-900/15 via-[#0a0a12] to-[#030014] flex flex-col justify-center relative overflow-hidden">
+          <div className="p-6 sm:p-10 lg:p-12 bg-gradient-to-br from-violet-900/15 via-[#0a0a12] to-[#030014] flex flex-col justify-center relative overflow-hidden">
             <div className="absolute top-0 right-0 w-40 h-40 bg-violet-600/15 blur-[60px] rounded-full pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-fuchsia-600/10 blur-[50px] rounded-full pointer-events-none"></div>
             <div className="relative z-10">
@@ -831,21 +828,21 @@ ${formData.message}
       {/* Glow effects */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-violet-900/8 blur-[120px] rounded-full pointer-events-none"></div>
 
-      <div className="max-w-2xl mx-auto px-5 sm:px-6 lg:px-8">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="bg-white/[0.02] backdrop-blur-xl border border-white/[0.06] rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl"
+          className="bg-white/[0.02] backdrop-blur-xl border border-white/[0.06] rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 shadow-2xl"
         >
           <div className="text-center mb-8 sm:mb-10">
             <h2 className="text-2xl sm:text-3xl font-display font-bold mb-2.5 tracking-[-0.02em]">{t.title}</h2>
             <p className="text-gray-400 text-sm sm:text-base">{t.subtitle}</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
               <div className="space-y-1.5">
                 <label className="text-xs font-medium text-gray-400 ml-0.5">{t.namePlaceholder}</label>
                 <input
@@ -928,8 +925,8 @@ const Footer = ({ t }: { t: TranslationData['footer'] }) => {
       {/* Orqa fon effekti (Glow) */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[150px] bg-violet-600/5 blur-[80px] pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-8 text-center md:text-left">
           
           {/* 1. LOGO SECTION */}
           <div className="flex items-center gap-3">
@@ -949,7 +946,7 @@ const Footer = ({ t }: { t: TranslationData['footer'] }) => {
           </div>
 
           {/* 3. SOCIAL MEDIA ICONS (4 ta) */}
-          <div className="flex items-center gap-2.5 order-2 md:order-3">
+          <div className="flex items-center gap-2.5 order-2 md:order-3 flex-wrap justify-center">
             
             {/* Telegram (Mavjud) */}
             <a 
@@ -1009,7 +1006,7 @@ export default function App() {
   const t = translations[lang];
 
   return (
-    <div className="bg-dark min-h-screen text-white selection:bg-fuchsia-500/30 selection:text-fuchsia-200 font-sans">
+    <div className="bg-dark min-h-screen text-white selection:bg-fuchsia-500/30 selection:text-fuchsia-200 font-sans overflow-x-hidden">
       <Navbar lang={lang} setLang={setLang} t={t.nav} />
       
       <main>
@@ -1020,12 +1017,12 @@ export default function App() {
         
         {/* How It Works Section */}
         <section id="how-it-works" className="py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-[#030014] via-[#04011a] to-[#05021a]">
-          <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-[-0.02em]">{t.steps.title}</h2>
             </div>
 
-            <div className="grid sm:grid-cols-3 gap-8 sm:gap-6 lg:gap-10 relative">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 lg:gap-10 relative">
               {/* Connecting Line (Desktop) */}
               <div className="hidden sm:block absolute top-10 lg:top-12 left-[16.67%] right-[16.67%] h-[2px] bg-gradient-to-r from-violet-500/20 via-violet-500/40 to-violet-500/20"></div>
 
