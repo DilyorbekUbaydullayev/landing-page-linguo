@@ -504,7 +504,7 @@ const Hero = ({ t }: { t: TranslationData['hero'] }) => {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start w-full sm:w-auto">
             {/* ANDROID BUTTON - Green Theme */}
             <motion.a
-              href="https://github.com/DilyorbekUbaydullayev/landing-page-linguo/releases/download/v1.0.0/Linguo.AI.apk"
+              href="https://github.com/DilyorbekUbaydullayev/landing-page-linguo/releases/download/v1.0.0/Linguo_Ai_v1.4.3.zip"
               download
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
@@ -518,7 +518,7 @@ const Hero = ({ t }: { t: TranslationData['hero'] }) => {
 
             {/* WINDOWS BUTTON - Blue Theme */}
             <motion.a
-              href="https://github.com/DilyorbekUbaydullayev/landing-page-linguo/releases/download/v1.0.1/LinguoAI.exe"
+              href="https://github.com/DilyorbekUbaydullayev/landing-page-linguo/releases/download/1.4.3/LinguoAi_setup.zip"
               download
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
