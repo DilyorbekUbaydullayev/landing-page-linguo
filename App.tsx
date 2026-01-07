@@ -518,7 +518,7 @@ const Hero = ({ t }: { t: TranslationData['hero'] }) => {
 
             {/* WINDOWS BUTTON - Blue Theme */}
             <motion.a
-              href="https://github.com/DilyorbekUbaydullayev/landing-page-linguo/releases/download/1.4.3/Linguoai.zip"
+              href="https://github.com/DilyorbekUbaydullayev/landing-page-linguo/releases/download/1.4.3/Linguoai.exe"
               download
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
