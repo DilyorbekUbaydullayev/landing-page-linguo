@@ -87,10 +87,12 @@ interface TranslationData {
     subtitle: string;
     namePlaceholder: string;
     emailPlaceholder: string;
+    telegramPlaceholder: string;
     messagePlaceholder: string;
     sendBtn: string;
     sending: string;
     success: string;
+    successAlert: string;
     error: string;
   };
   footer: {
@@ -152,10 +154,12 @@ const translations: Record<Language, TranslationData> = {
       subtitle: "Have questions or feedback? Send us a message directly.",
       namePlaceholder: "Your Name",
       emailPlaceholder: "Your Email",
+      telegramPlaceholder: "@username",
       messagePlaceholder: "How can we help you?",
       sendBtn: "Send Message",
       sending: "Sending...",
       success: "Message Sent Successfully!",
+      successAlert: "Thank you! We will send you the test link via email or Telegram.",
       error: "Failed to send. Please try again.",
     },
     footer: {
@@ -213,10 +217,12 @@ const translations: Record<Language, TranslationData> = {
       subtitle: "Savollaringiz bormi? Bizga to'g'ridan-to'g'ri xabar yuboring.",
       namePlaceholder: "Ismingiz",
       emailPlaceholder: "Email manzilingiz",
+      telegramPlaceholder: "@username",
       messagePlaceholder: "Sizga qanday yordam bera olamiz?",
       sendBtn: "Yuborish",
       sending: "Yuborilmoqda...",
       success: "Xabar muvaffaqiyatli yuborildi!",
+      successAlert: "Rahmat! Sizga test havolasini email yoki Telegram orqali yuboramiz.",
       error: "Xatolik yuz berdi. Qayta urinib ko'ring.",
     },
     footer: {
@@ -274,10 +280,12 @@ const translations: Record<Language, TranslationData> = {
       subtitle: "Есть вопросы или предложения? Отправьте нам сообщение.",
       namePlaceholder: "Ваше имя",
       emailPlaceholder: "Ваш Email",
+      telegramPlaceholder: "@username",
       messagePlaceholder: "Чем мы можем помочь?",
       sendBtn: "Отправить",
       sending: "Отправка...",
       success: "Сообщение успешно отправлено!",
+      successAlert: "Спасибо! Мы отправим вам тестовую ссылку по email или Telegram.",
       error: "Ошибка отправки. Попробуйте еще раз.",
     },
     footer: {
@@ -837,7 +845,8 @@ const ProblemSolution = ({ t }: { t: TranslationData['problem'] }) => {
 }
 
 export const ContactSection = ({ t }: { t: TranslationData['contact'] }) => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', telegram: '', message: '' });
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   // .env fayldan o'qib olish (Vite uchun)
@@ -846,7 +855,7 @@ export const ContactSection = ({ t }: { t: TranslationData['contact'] }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    if (!formData.name || !formData.email || !formData.telegram || !formData.message) return;
     
     // Agar .env da ma'lumotlar yo'q bo'lsa xatolik oldini olish
     if (!BOT_TOKEN || !CHAT_ID) {
@@ -862,6 +871,7 @@ export const ContactSection = ({ t }: { t: TranslationData['contact'] }) => {
 
 👤 *Name:* ${formData.name}
 📧 *Email:* ${formData.email}
+📱 *Telegram:* ${formData.telegram}
 📝 *Message:*
 ${formData.message}
     `;
@@ -881,7 +891,8 @@ ${formData.message}
 
       if (response.ok) {
         setStatus('success');
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ name: '', email: '', telegram: '', message: '' });
+        setShowSuccessAlert(true);
         setTimeout(() => setStatus('idle'), 5000);
       } else {
         setStatus('error');
@@ -911,6 +922,7 @@ ${formData.message}
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+            {/* Name & Email Row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
               <div className="space-y-1.5">
                 <label className="text-xs font-medium text-gray-400 ml-0.5">{t.namePlaceholder}</label>
@@ -932,6 +944,27 @@ ${formData.message}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
                   className="w-full bg-[#08080f] border border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/30 transition-all duration-300"
+                />
+              </div>
+            </div>
+
+            {/* Telegram Username - Beautiful standalone field */}
+            <div className="space-y-1.5">
+              <label className="text-xs font-medium text-gray-400 ml-0.5 flex items-center gap-1.5">
+                <Send className="w-3 h-3 text-[#229ED9]" />
+                Telegram
+              </label>
+              <div className="relative">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#229ED9]">
+                  <Send className="w-4 h-4" />
+                </div>
+                <input
+                  type="text"
+                  placeholder={t.telegramPlaceholder}
+                  value={formData.telegram}
+                  onChange={(e) => setFormData({ ...formData, telegram: e.target.value })}
+                  required
+                  className="w-full bg-[#08080f] border border-white/[0.08] rounded-xl pl-11 pr-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#229ED9]/50 focus:ring-1 focus:ring-[#229ED9]/30 transition-all duration-300"
                 />
               </div>
             </div>
@@ -984,6 +1017,61 @@ ${formData.message}
           </form>
         </motion.div>
       </div>
+
+      {/* Success Alert Modal */}
+      <AnimatePresence>
+        {showSuccessAlert && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+            onClick={() => setShowSuccessAlert(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="relative bg-[#0a0a14] border border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl shadow-green-500/20"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setShowSuccessAlert(false)}
+                className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Icon */}
+              <div className="flex justify-center mb-5">
+                <div className="w-16 h-16 rounded-2xl bg-green-500/10 border border-green-500/30 flex items-center justify-center">
+                  <CheckCircle className="w-8 h-8 text-green-400" />
+                </div>
+              </div>
+
+              {/* Title */}
+              <h3 className="text-xl sm:text-2xl font-bold text-center mb-3 text-white">
+                {t.success}
+              </h3>
+
+              {/* Description */}
+              <p className="text-gray-400 text-center text-sm sm:text-base mb-6 leading-relaxed">
+                {t.successAlert}
+              </p>
+
+              {/* Button */}
+              <button
+                onClick={() => setShowSuccessAlert(false)}
+                className="w-full py-3.5 rounded-xl font-semibold text-sm bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg shadow-green-500/20 hover:shadow-green-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+              >
+                OK
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
