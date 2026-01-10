@@ -463,6 +463,8 @@ const AudioWave = () => {
 };
 
 const Hero = ({ t }: { t: TranslationData['hero'] }) => {
+  const [showAndroidModal, setShowAndroidModal] = useState(false);
+
   return (
     <section id="download-section" className="relative min-h-screen flex items-center justify-center pt-24 pb-16 lg:pt-28 lg:pb-20 overflow-hidden">
       {/* Background Effects */}
@@ -503,9 +505,8 @@ const Hero = ({ t }: { t: TranslationData['hero'] }) => {
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start w-full sm:w-auto">
             {/* ANDROID BUTTON - Green Theme */}
-            <motion.a
-              href="https://github.com/DilyorbekUbaydullayev/landing-page-linguo/releases/download/v1.0.0/LinguoAI_v2.2.5.zip"
-              download
+            <motion.button
+              onClick={() => setShowAndroidModal(true)}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="flex items-center justify-center gap-3 bg-white text-[#030014] px-6 py-4 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base shadow-[0_0_30px_rgba(255,255,255,0.25)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(61,220,132,0.6)] hover:bg-[#eafff3] border-2 border-transparent hover:border-[#3DDC84] w-full sm:w-auto"
@@ -514,7 +515,7 @@ const Hero = ({ t }: { t: TranslationData['hero'] }) => {
                 <AndroidLogo />
               </span>
               {t.androidBtn}
-            </motion.a>
+            </motion.button>
 
             {/* WINDOWS BUTTON - Blue Theme */}
             <motion.a
@@ -604,6 +605,74 @@ const Hero = ({ t }: { t: TranslationData['hero'] }) => {
           <div className="absolute top-[60%] left-[40%] w-32 h-32 bg-indigo-500/30 rounded-full -z-10 blur-[40px]"></div>
         </motion.div>
       </div>
+
+      {/* Android Test Modal */}
+      <AnimatePresence>
+        {showAndroidModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+            onClick={() => setShowAndroidModal(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="relative bg-[#0a0a14] border border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl shadow-violet-500/20"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setShowAndroidModal(false)}
+                className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Icon */}
+              <div className="flex justify-center mb-5">
+                <div className="w-16 h-16 rounded-2xl bg-[#3DDC84]/10 border border-[#3DDC84]/30 flex items-center justify-center">
+                  <span className="text-[#3DDC84]">
+                    <AndroidLogo />
+                  </span>
+                </div>
+              </div>
+
+              {/* Title */}
+              <h3 className="text-xl sm:text-2xl font-bold text-center mb-3 text-white">
+                Android Test Bosqichida
+              </h3>
+
+              {/* Description */}
+              <p className="text-gray-400 text-center text-sm sm:text-base mb-6 leading-relaxed">
+                Ilova hozirda Play Store'da test bosqichida va yaqinda public bo'ladi.
+                Test qilish uchun <span className="text-white font-medium">email</span> va <span className="text-white font-medium">Telegram username</span>'ingizni yuboring — sizga test havolasini yuboramiz!
+              </p>
+
+              {/* Buttons */}
+              <div className="flex flex-col gap-3">
+                <a
+                  href="#contact"
+                  onClick={() => setShowAndroidModal(false)}
+                  className="w-full py-3.5 rounded-xl font-semibold text-sm bg-gradient-to-r from-[#3DDC84] to-[#2bc573] text-[#030014] text-center shadow-lg shadow-[#3DDC84]/20 hover:shadow-[#3DDC84]/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  <Send className="w-4 h-4" />
+                  Testga Yozilish
+                </a>
+                <button
+                  onClick={() => setShowAndroidModal(false)}
+                  className="w-full py-3 rounded-xl font-medium text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-300"
+                >
+                  Yopish
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
@@ -824,7 +893,7 @@ ${formData.message}
   };
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-[#030014] relative overflow-hidden">
+    <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-[#030014] relative overflow-hidden">
       {/* Glow effects */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-violet-900/8 blur-[120px] rounded-full pointer-events-none"></div>
 
