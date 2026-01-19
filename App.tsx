@@ -322,7 +322,7 @@ return (
           {/* LOGO SECTION */}
           <div className="flex-shrink-0 flex items-center gap-2 sm:gap-3 cursor-pointer group">
             <img 
-              src="/logo.png" 
+              src="/Linguo 2.png" 
               alt="Linguo AI Logo" 
               className="w-8 h-8 sm:w-10 sm:h-10 object-contain rounded-lg drop-shadow-[0_0_15px_rgba(139,92,246,0.5)]" 
             />
@@ -1088,7 +1088,7 @@ const Footer = ({ t }: { t: TranslationData['footer'] }) => {
           {/* 1. LOGO SECTION */}
           <div className="flex items-center gap-3">
              <img 
-               src="/logo.png" 
+               src="/Linguo 2.png" 
                alt="Linguo AI" 
                className="w-8 h-8 object-contain opacity-90 drop-shadow-[0_0_10px_rgba(139,92,246,0.3)]"
              />
