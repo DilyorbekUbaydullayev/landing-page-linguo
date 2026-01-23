@@ -20,7 +20,11 @@ import {
   Linkedin,
   Youtube,
   ChevronDown,
-  Check
+  Check,
+  Coins,
+  Sparkles,
+  Crown,
+  Zap
 } from 'lucide-react';
 
 // --- CUSTOM BRAND ICONS ---
@@ -44,7 +48,8 @@ interface TranslationData {
   nav: {
     features: string;
     howItWorks: string;
-    download: string;
+    pricing: string;
+    contact: string;
     getApp: string;
   };
   hero: {
@@ -82,12 +87,22 @@ interface TranslationData {
       desc: string;
     }[];
   };
+  pricing: {
+    title: string;
+    subtitle: string;
+    plans: {
+      name: string;
+      coins: number;
+      price: string;
+      badge?: string;
+    }[];
+    buyBtn: string;
+  };
   contact: {
     title: string;
     subtitle: string;
     namePlaceholder: string;
     emailPlaceholder: string;
-    telegramPlaceholder: string;
     messagePlaceholder: string;
     sendBtn: string;
     sending: string;
@@ -108,7 +123,8 @@ const translations: Record<Language, TranslationData> = {
     nav: {
       features: "Features",
       howItWorks: "How it Works",
-      download: "Download",
+      pricing: "Pricing",
+      contact: "Contact",
       getApp: "Get App",
     },
     hero: {
@@ -149,17 +165,26 @@ const translations: Record<Language, TranslationData> = {
         { title: "Track Progress", desc: "Get detailed analytics on your vocabulary and speaking accuracy." },
       ],
     },
+    pricing: {
+      title: "Simple, Transparent Pricing",
+      subtitle: "Choose the plan that works best for you",
+      plans: [
+        { name: "Starter", coins: 200, price: "$1.99", badge: "Affordable" },
+        { name: "Premium", coins: 600, price: "$4.99", badge: "Most Popular" },
+        { name: "Ultimate", coins: 1500, price: "$9.99", badge: "Best Value" },
+      ],
+      buyBtn: "Buy Now",
+    },
     contact: {
       title: "Get in Touch",
       subtitle: "Have questions or feedback? Send us a message directly.",
       namePlaceholder: "Your Name",
       emailPlaceholder: "Your Email",
-      telegramPlaceholder: "@username",
       messagePlaceholder: "How can we help you?",
       sendBtn: "Send Message",
       sending: "Sending...",
       success: "Message Sent Successfully!",
-      successAlert: "Thank you! We will send you the test link via email or Telegram.",
+      successAlert: "Thank you! We will get back to you soon via email.",
       error: "Failed to send. Please try again.",
     },
     footer: {
@@ -171,7 +196,8 @@ const translations: Record<Language, TranslationData> = {
     nav: {
       features: "Imkoniyatlar",
       howItWorks: "Ishlash tartibi",
-      download: "Yuklab olish",
+      pricing: "Narxlar",
+      contact: "Bog'lanish",
       getApp: "Ilovani olish",
     },
     hero: {
@@ -212,17 +238,26 @@ const translations: Record<Language, TranslationData> = {
         { title: "Natijani Kuzating", desc: "So'z boyligi va gapirish aniqligi bo'yicha batafsil statistika oling." },
       ],
     },
+    pricing: {
+      title: "Oddiy va Tushunarli Narxlar",
+      subtitle: "O'zingizga mos rejani tanlang",
+      plans: [
+        { name: "Starter", coins: 200, price: "$1.99", badge: "Hamyonbop" },
+        { name: "Premium", coins: 600, price: "$4.99", badge: "Eng mashhur" },
+        { name: "Ultimate", coins: 1500, price: "$9.99", badge: "Eng zo'r taklif" },
+      ],
+      buyBtn: "Sotib olish",
+    },
     contact: {
       title: "Biz bilan bog'laning",
       subtitle: "Savollaringiz bormi? Bizga to'g'ridan-to'g'ri xabar yuboring.",
       namePlaceholder: "Ismingiz",
       emailPlaceholder: "Email manzilingiz",
-      telegramPlaceholder: "@username",
       messagePlaceholder: "Sizga qanday yordam bera olamiz?",
       sendBtn: "Yuborish",
       sending: "Yuborilmoqda...",
       success: "Xabar muvaffaqiyatli yuborildi!",
-      successAlert: "Rahmat! Sizga test havolasini email yoki Telegram orqali yuboramiz.",
+      successAlert: "Rahmat! Tez orada email orqali javob beramiz.",
       error: "Xatolik yuz berdi. Qayta urinib ko'ring.",
     },
     footer: {
@@ -234,7 +269,8 @@ const translations: Record<Language, TranslationData> = {
     nav: {
       features: "Функции",
       howItWorks: "Как это работает",
-      download: "Скачать",
+      pricing: "Цены",
+      contact: "Контакты",
       getApp: "Скачать",
     },
     hero: {
@@ -275,17 +311,26 @@ const translations: Record<Language, TranslationData> = {
         { title: "Следите за прогрессом", desc: "Получайте подробную статистику по словарному запасу и точности речи." },
       ],
     },
+    pricing: {
+      title: "Простые и Понятные Цены",
+      subtitle: "Выберите подходящий план",
+      plans: [
+        { name: "Starter", coins: 200, price: "$1.99", badge: "Доступный" },
+        { name: "Premium", coins: 600, price: "$4.99", badge: "Популярный" },
+        { name: "Ultimate", coins: 1500, price: "$9.99", badge: "Лучшее предложение" },
+      ],
+      buyBtn: "Купить",
+    },
     contact: {
       title: "Свяжитесь с нами",
       subtitle: "Есть вопросы или предложения? Отправьте нам сообщение.",
       namePlaceholder: "Ваше имя",
       emailPlaceholder: "Ваш Email",
-      telegramPlaceholder: "@username",
       messagePlaceholder: "Чем мы можем помочь?",
       sendBtn: "Отправить",
       sending: "Отправка...",
       success: "Сообщение успешно отправлено!",
-      successAlert: "Спасибо! Мы отправим вам тестовую ссылку по email или Telegram.",
+      successAlert: "Спасибо! Мы ответим вам по email в ближайшее время.",
       error: "Ошибка отправки. Попробуйте еще раз.",
     },
     footer: {
@@ -336,6 +381,8 @@ return (
             <div className="ml-10 flex items-center gap-1">
               <a href="#features" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm font-medium px-4 py-2 rounded-lg hover:bg-white/[0.04]">{t.features}</a>
               <a href="#how-it-works" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm font-medium px-4 py-2 rounded-lg hover:bg-white/[0.04]">{t.howItWorks}</a>
+              <a href="#pricing" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm font-medium px-4 py-2 rounded-lg hover:bg-white/[0.04]">{t.pricing}</a>
+              <a href="#contact" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm font-medium px-4 py-2 rounded-lg hover:bg-white/[0.04]">{t.contact}</a>
 
               {/* --- NEW LANGUAGE DROPDOWN --- */}
               <div className="relative ml-2">
@@ -384,7 +431,7 @@ return (
               </div>
               {/* --- END DROPDOWN --- */}
 
-              <a href="#download-section" className="ml-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-lg shadow-violet-500/25 transition-all duration-300 hover:shadow-violet-500/40 hover:scale-[1.02] active:scale-[0.98]">
+              <a href="https://play.google.com/store/apps/details?id=uz.linguo.app" target="_blank" rel="noopener noreferrer" className="ml-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-lg shadow-violet-500/25 transition-all duration-300 hover:shadow-violet-500/40 hover:scale-[1.02] active:scale-[0.98]">
                 {t.getApp}
               </a>
             </div>
@@ -412,7 +459,9 @@ return (
             <div className="px-5 pt-2 pb-6 space-y-1">
               <a href="#features" onClick={() => setIsOpen(false)} className="block text-gray-300 hover:text-white hover:bg-white/[0.04] text-base font-medium py-3 px-3 rounded-xl transition-all">{t.features}</a>
               <a href="#how-it-works" onClick={() => setIsOpen(false)} className="block text-gray-300 hover:text-white hover:bg-white/[0.04] text-base font-medium py-3 px-3 rounded-xl transition-all">{t.howItWorks}</a>
-              
+              <a href="#pricing" onClick={() => setIsOpen(false)} className="block text-gray-300 hover:text-white hover:bg-white/[0.04] text-base font-medium py-3 px-3 rounded-xl transition-all">{t.pricing}</a>
+              <a href="#contact" onClick={() => setIsOpen(false)} className="block text-gray-300 hover:text-white hover:bg-white/[0.04] text-base font-medium py-3 px-3 rounded-xl transition-all">{t.contact}</a>
+
               {/* Mobile Language Selection (Row of Buttons) */}
               <div className="py-4 border-t border-white/[0.06] mt-2">
                 <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-3 px-1">Select Language</p>
@@ -422,8 +471,8 @@ return (
                       key={item.code}
                       onClick={() => setLang(item.code as Language)}
                       className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg border transition-all min-w-[30%] ${
-                        lang === item.code 
-                          ? 'bg-violet-600/20 border-violet-500/50 text-white' 
+                        lang === item.code
+                          ? 'bg-violet-600/20 border-violet-500/50 text-white'
                           : 'bg-white/[0.03] border-white/[0.06] text-gray-400 hover:bg-white/[0.06]'
                       }`}
                     >
@@ -435,7 +484,7 @@ return (
               </div>
 
               <div className="pt-2">
-                <a href="#download-section" className="block text-center w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white px-6 py-3.5 rounded-xl font-semibold shadow-lg shadow-violet-500/20">
+                <a href="https://play.google.com/store/apps/details?id=uz.linguo.app" target="_blank" rel="noopener noreferrer" className="block text-center w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white px-6 py-3.5 rounded-xl font-semibold shadow-lg shadow-violet-500/20">
                   {t.getApp}
                 </a>
               </div>
@@ -471,8 +520,6 @@ const AudioWave = () => {
 };
 
 const Hero = ({ t }: { t: TranslationData['hero'] }) => {
-  const [showAndroidModal, setShowAndroidModal] = useState(false);
-
   return (
     <section id="download-section" className="relative min-h-screen flex items-center justify-center pt-24 pb-16 lg:pt-28 lg:pb-20 overflow-hidden">
       {/* Background Effects */}
@@ -513,8 +560,10 @@ const Hero = ({ t }: { t: TranslationData['hero'] }) => {
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start w-full sm:w-auto">
             {/* ANDROID BUTTON - Green Theme */}
-            <motion.button
-              onClick={() => setShowAndroidModal(true)}
+            <motion.a
+              href="https://play.google.com/store/apps/details?id=uz.linguo.app"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="flex items-center justify-center gap-3 bg-white text-[#030014] px-6 py-4 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base shadow-[0_0_30px_rgba(255,255,255,0.25)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(61,220,132,0.6)] hover:bg-[#eafff3] border-2 border-transparent hover:border-[#3DDC84] w-full sm:w-auto"
@@ -523,17 +572,17 @@ const Hero = ({ t }: { t: TranslationData['hero'] }) => {
                 <AndroidLogo />
               </span>
               {t.androidBtn}
-            </motion.button>
+            </motion.a>
 
             {/* WINDOWS BUTTON - Blue Theme */}
             <motion.a
-              href="https://github.com/DilyorbekUbaydullayev/landing-page-linguo/releases/download/1.4.3/Linguoai.exe"
+              href="https://github.com/DilyorbekUbaydullayev/landing-page-linguo/releases/download/1.4.3/Linguoai.zip"
               download
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="flex items-center justify-center gap-3 bg-white/[0.03] text-white border border-white/10 px-6 py-4 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base hover:bg-[#0078D7]/10 hover:border-[#0078D7]/50 hover:shadow-[0_0_30px_rgba(0,120,215,0.3)] transition-all duration-300 w-full sm:w-auto"
             >
-               <span className="text-[#0078D7]">
+              <span className="text-[#0078D7]">
                 <WindowsLogo />
               </span>
               {t.windowsBtn}
@@ -614,73 +663,6 @@ const Hero = ({ t }: { t: TranslationData['hero'] }) => {
         </motion.div>
       </div>
 
-      {/* Android Test Modal */}
-      <AnimatePresence>
-        {showAndroidModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
-            onClick={() => setShowAndroidModal(false)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ type: "spring", duration: 0.5 }}
-              className="relative bg-[#0a0a14] border border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl shadow-violet-500/20"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setShowAndroidModal(false)}
-                className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              {/* Icon */}
-              <div className="flex justify-center mb-5">
-                <div className="w-16 h-16 rounded-2xl bg-[#3DDC84]/10 border border-[#3DDC84]/30 flex items-center justify-center">
-                  <span className="text-[#3DDC84]">
-                    <AndroidLogo />
-                  </span>
-                </div>
-              </div>
-
-              {/* Title */}
-              <h3 className="text-xl sm:text-2xl font-bold text-center mb-3 text-white">
-                Android Test Bosqichida
-              </h3>
-
-              {/* Description */}
-              <p className="text-gray-400 text-center text-sm sm:text-base mb-6 leading-relaxed">
-                Ilova hozirda Play Store'da test bosqichida va yaqinda public bo'ladi.
-                Test qilish uchun <span className="text-white font-medium">email</span> va <span className="text-white font-medium">Telegram username</span>'ingizni yuboring — sizga test havolasini yuboramiz!
-              </p>
-
-              {/* Buttons */}
-              <div className="flex flex-col gap-3">
-                <a
-                  href="#contact"
-                  onClick={() => setShowAndroidModal(false)}
-                  className="w-full py-3.5 rounded-xl font-semibold text-sm bg-gradient-to-r from-[#3DDC84] to-[#2bc573] text-[#030014] text-center shadow-lg shadow-[#3DDC84]/20 hover:shadow-[#3DDC84]/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2"
-                >
-                  <Send className="w-4 h-4" />
-                  Testga Yozilish
-                </a>
-                <button
-                  onClick={() => setShowAndroidModal(false)}
-                  className="w-full py-3 rounded-xl font-medium text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-300"
-                >
-                  Yopish
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 };
@@ -807,6 +789,80 @@ const Features = ({ t }: { t: TranslationData['features'] }) => {
   );
 };
 
+const Pricing = ({ t }: { t: TranslationData['pricing'] }) => {
+  const planStyles = [
+    { border: 'border-green-500/30', bg: 'bg-green-500/5', badge: 'bg-green-500/20 text-green-400', btn: 'bg-green-500 hover:bg-green-400', icon: 'text-green-400' },
+    { border: 'border-violet-500/30', bg: 'bg-violet-500/5', badge: 'bg-violet-500/20 text-violet-400', btn: 'bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500', icon: 'text-violet-400' },
+    { border: 'border-amber-500/30', bg: 'bg-amber-500/5', badge: 'bg-amber-500/20 text-amber-400', btn: 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400', icon: 'text-amber-400' },
+  ];
+
+  return (
+    <section id="pricing" className="py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-[#030014] to-[#05021a] relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-violet-600/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 tracking-[-0.02em]">{t.title}</h2>
+          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">{t.subtitle}</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+          {t.plans.map((plan, idx) => {
+            const style = planStyles[idx];
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: idx * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className={`relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl border ${style.border} ${style.bg} backdrop-blur-sm hover:scale-[1.02] transition-all duration-300`}
+              >
+                {/* Badge */}
+                {plan.badge && (
+                  <div className={`absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold ${style.badge}`}>
+                    {plan.badge}
+                  </div>
+                )}
+
+                {/* Coins Display */}
+                <div className="flex flex-col items-center mb-6 pt-2">
+                  <div className={`w-16 h-16 rounded-2xl ${style.bg} border ${style.border} flex items-center justify-center mb-4`}>
+                    <Coins className={`w-8 h-8 ${style.icon}`} />
+                  </div>
+                  <div className="text-center">
+                    <span className="text-4xl sm:text-5xl font-bold text-white">{plan.coins}</span>
+                    <p className={`text-sm font-medium ${style.icon} mt-1`}>AI coins</p>
+                  </div>
+                </div>
+
+                {/* Plan Name & Price */}
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-bold text-white mb-2">{plan.name}</h3>
+                  <p className="text-2xl font-bold text-white">{plan.price}</p>
+                </div>
+
+                {/* Buy Button */}
+                <motion.a
+                  href="https://play.google.com/store/apps/details?id=uz.linguo.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className={`block w-full py-3.5 rounded-xl font-semibold text-sm text-center text-white ${style.btn} shadow-lg transition-all duration-300`}
+                >
+                  {t.buyBtn}
+                </motion.a>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const ProblemSolution = ({ t }: { t: TranslationData['problem'] }) => {
   return (
     <section className="py-16 sm:py-20 lg:py-24 bg-[#080810]">
@@ -845,7 +901,7 @@ const ProblemSolution = ({ t }: { t: TranslationData['problem'] }) => {
 }
 
 export const ContactSection = ({ t }: { t: TranslationData['contact'] }) => {
-  const [formData, setFormData] = useState({ name: '', email: '', telegram: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
@@ -855,8 +911,8 @@ export const ContactSection = ({ t }: { t: TranslationData['contact'] }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.telegram || !formData.message) return;
-    
+    if (!formData.name || !formData.email || !formData.message) return;
+
     // Agar .env da ma'lumotlar yo'q bo'lsa xatolik oldini olish
     if (!BOT_TOKEN || !CHAT_ID) {
         console.error("Telegram token yoki Chat ID topilmadi!");
@@ -871,7 +927,6 @@ export const ContactSection = ({ t }: { t: TranslationData['contact'] }) => {
 
 👤 *Name:* ${formData.name}
 📧 *Email:* ${formData.email}
-📱 *Telegram:* ${formData.telegram}
 📝 *Message:*
 ${formData.message}
     `;
@@ -891,7 +946,7 @@ ${formData.message}
 
       if (response.ok) {
         setStatus('success');
-        setFormData({ name: '', email: '', telegram: '', message: '' });
+        setFormData({ name: '', email: '', message: '' });
         setShowSuccessAlert(true);
         setTimeout(() => setStatus('idle'), 5000);
       } else {
@@ -944,27 +999,6 @@ ${formData.message}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
                   className="w-full bg-[#08080f] border border-white/[0.08] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/30 transition-all duration-300"
-                />
-              </div>
-            </div>
-
-            {/* Telegram Username - Beautiful standalone field */}
-            <div className="space-y-1.5">
-              <label className="text-xs font-medium text-gray-400 ml-0.5 flex items-center gap-1.5">
-                <Send className="w-3 h-3 text-[#229ED9]" />
-                Telegram
-              </label>
-              <div className="relative">
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#229ED9]">
-                  <Send className="w-4 h-4" />
-                </div>
-                <input
-                  type="text"
-                  placeholder={t.telegramPlaceholder}
-                  value={formData.telegram}
-                  onChange={(e) => setFormData({ ...formData, telegram: e.target.value })}
-                  required
-                  className="w-full bg-[#08080f] border border-white/[0.08] rounded-xl pl-11 pr-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#229ED9]/50 focus:ring-1 focus:ring-[#229ED9]/30 transition-all duration-300"
                 />
               </div>
             </div>
@@ -1203,6 +1237,9 @@ export default function App() {
           </div>
         </section>
 
+        {/* Pricing Section */}
+        <Pricing t={t.pricing} />
+
         {/* Bottom CTA */}
         <section className="py-20 sm:py-24 lg:py-28 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-violet-600/5 via-violet-600/10 to-violet-600/5"></div>
@@ -1218,7 +1255,9 @@ export default function App() {
               Ready to speak fluent?
             </motion.h2>
             <motion.a
-              href="#download-section"
+              href="https://play.google.com/store/apps/details?id=uz.linguo.app"
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
